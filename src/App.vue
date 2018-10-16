@@ -16,4 +16,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #555555;
+  box-sizing: border-box;
+}
+
 </style>

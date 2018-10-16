@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// 网站首页
+import WebsiteIndex from '@/pages/index/index'
 import productSummary from '@/components/productSummary'
 
 
@@ -10,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'WebsiteIndex',
+      component: WebsiteIndex
     },
     {
       path: '/img',
