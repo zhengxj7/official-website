@@ -2,6 +2,7 @@
   <div class="website_index">
     <search-tool></search-tool>
     <company-boost></company-boost>
+    
   </div>
 </template>
 <script>
@@ -36,3 +37,4 @@ export default {
   }
 }
 </script>
+

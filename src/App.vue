@@ -1,12 +1,21 @@
 <template>
   <div id="app">
     <router-view/>
+    <website-link></website-link>
+    <website-footer></website-footer>
   </div>
 </template>
 
 <script>
+import websiteFooter from '@/components/footer';
+import websiteLink from '@/components/linkUs';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    websiteFooter,
+    websiteLink,
+
+  }
 }
 </script>
 
