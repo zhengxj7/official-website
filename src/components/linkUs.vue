@@ -1,27 +1,29 @@
 <template>
-    <div class="website_link">
-        <div class="website_link_content">
-            <div class="website_link_logo">
-                <img :src="linkLogoImg" alt="公司Logo">
-            </div>
-            <div class="website_link_url">
-                <div v-for="(bl, index) in linkList" :key="index" class="website_link_url_item">
-                    <span class="website_link_url_title">{{bl.title}}</span>
-                    <span v-for="(de, ind) in bl.links" :key="ind" class="website_link_url_title">
-                        <a :href="de.url">{{de.name}}</a>
-                    </span>
-                </div>
-            </div>
-            <div class="website_link_code">
-                <div v-for="(item, index) in codeList" :key="index" class="website_link_code_item">
-                    <div class="website_link_code_img">
-                        <img :src="item.url" :alt="item.name">
-                    </div>
-                    <div class="website_link_code_name">{{item.name}}</div>
-                </div>
-            </div>
+  <div class="website_link">
+    <div class="website_link_content">
+      <div class="website_link_logo">
+        <img :src="linkLogoImg" alt="公司Logo">
+      </div>
+      <div class="website_link_link">
+        <div class="website_link_url">
+          <div v-for="(bl, index) in linkList" :key="index" class="website_link_url_item">
+            <span class="website_link_url_title">{{bl.title}}</span>
+            <span v-for="(de, ind) in bl.links" :key="ind" class="website_link_url_con">
+              <a :href="de.url">{{de.name}}</a>
+            </span>
+          </div>
         </div>
+        <div class="website_link_code">
+          <div v-for="(item, index) in codeList" :key="index" class="website_link_code_item">
+            <div class="website_link_code_img">
+              <img :src="item.url" :alt="item.name">
+            </div>
+            <div class="website_link_code_name">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import linkLogoImg from '@/assets/img/website_link_logo.png';
@@ -35,22 +37,22 @@ export default {
                 {
                     title: '资讯中心',
                     links: [
-                        {name: '行业动态', url: 'www.baidu.com'},
-                        {name: '防护知识', url: 'www.baidu.com'}
+                        {name: '行业动态', url: 'https://www.baidu.com'},
+                        {name: '防护知识', url: 'https://www.baidu.com'}
                     ]
                 },
                 {
                     title: '服务中心',
                     links: [
-                        {name: '合作加盟', url: 'www.baidu.com'},
-                        {name: '如何购买', url: 'www.baidu.com'}
+                        {name: '合作加盟', url: 'https://www.baidu.com'},
+                        {name: '如何购买', url: 'https://www.baidu.com'}
                     ]
                 },
                 {
                     title: '沟通中心',
                     links: [
-                        {name: '关于我们', url: 'www.baidu.com'},
-                        {name: '联系我们', url: 'www.baidu.com'}
+                        {name: '关于我们', url: 'https://www.baidu.com'},
+                        {name: '联系我们', url: 'https://www.baidu.com'}
                     ]
                 },
             ],
@@ -63,7 +65,10 @@ export default {
         }
     },
     props: {
-
+      isIndex: { // 是否是首页
+        type: Boolean,
+        default: false
+      }
     },
     computed: {
 
@@ -98,19 +103,46 @@ export default {
     width: 100%;
     height: 100%;
 }
+/* ---- */
+.website_link .website_link_link {
+    width: 1080px;
+    padding-top: 10px;
+}
 /* 中间Link部分样式 */
 .website_link .website_link_url {
     width: 840px;
+    padding-left: 150px;
+    float: left;
 }
+.website_link .website_link_url .website_link_url_item {
+    width: 200px;
+    float: left;
+}
+.website_link .website_link_url span {
+    display: block;
+    text-align: left;
+}
+.website_link .website_link_url .website_link_url_title {
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 0 20px;
+}
+.website_link .website_link_url a {
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    color: #cccccc;
+    text-decoration: none;
+}
+
 /* 右侧二维码部分样式 */
 .website_link .website_link_code {
     width: 240px;
-    overflow: hidden;
+    float: right;
 }
 .website_link .website_link_code .website_link_code_item {
     width: 100px;
     margin-left: 20px;
-    padding-top: 10px;
     float: left;
 }
 .website_link .website_link_code .website_link_code_img {
