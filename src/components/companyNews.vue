@@ -4,12 +4,12 @@
     <div class="company_news_content">
       <div class="company_news_left">
         <div class="company_news_left_tab">
-          <div v-for="(tab, index) in tabList" :key="index" class="company_news_tab_item">
+          <div v-for="(tab, index) in tabList" :key="index" @mouseover="selectTab(tab)" :class="{company_news_tab_item: true, active_tab: index==currentTab}">
             <a :href="tab.url">{{tab.name}}</a>
           </div>
         </div>
         <div class="company_news_left_list">
-          <div class="company_news_list_item" v-for="(item, index) in newsList" :key="index">
+          <div class="company_news_list_item" v-for="(item, index) in currentTabList" :key="index">
             <div class="news_item_sort">{{['A', 'B', 'C', 'D', 'E'][index]}}</div>
             <div class="news_item_content">
               <div class="news_item_content_info">
@@ -22,18 +22,19 @@
         </div>
       </div>
       <div class="company_news_right">
-
+        <video :src="videoUrl" width="550" height="350" controls="controls"></video>
       </div>
     </div>
   </div>
 </template>
 <script>
 import SectionTitle from '@/components/block/sectionTitle';
-
+import {newsList, hangyeList, protectList} from '@/mock/newsList.js';
 export default {
   name: 'company_news',
   data () {
     return {
+      videoUrl: 'http://cloud.video.taobao.com//play/u/2168657336/p/1/e/6/t/1/50053950152.mp4',
       tabList: [
         {
           name: '行业动态',
@@ -48,38 +49,10 @@ export default {
           url: 'https://www.baidu.com'
         }
       ],
-      newsList: [
-        {
-          title: '正压式消防空气呼吸器行业标准知识介绍（一）',
-          url: 'http://www.czhaigu.com/comnews/2549.html',
-          date: '2018-08-02',
-          content: '时间已经进入了8月，我们大部分地区也迎来了温度最高的时候，特别是北方地区，干燥少雨，很容易引发火灾，特别是那些存在危险爆炸品的工作环境很容易'
-        },
-        {
-          title: '正压式消防空气呼吸器行业标准知识介绍（一）',
-          url: 'http://www.czhaigu.com/comnews/2549.html',
-          date: '2018-08-02',
-          content: '时间已经进入了8月，我们大部分地区也迎来了温度最高的时候，特别是北方地区，干燥少雨，很容易引发火灾，特别是那些存在危险爆炸品的工作环境很容易'
-        },
-        {
-          title: '正压式消防空气呼吸器行业标准知识介绍（一）',
-          url: 'http://www.czhaigu.com/comnews/2549.html',
-          date: '2018-08-02',
-          content: '时间已经进入了8月，我们大部分地区也迎来了温度最高的时候，特别是北方地区，干燥少雨，很容易引发火灾，特别是那些存在危险爆炸品的工作环境很容易'
-        },
-        {
-          title: '正压式消防空气呼吸器行业标准知识介绍（一）',
-          url: 'http://www.czhaigu.com/comnews/2549.html',
-          date: '2018-08-02',
-          content: '时间已经进入了8月，我们大部分地区也迎来了温度最高的时候，特别是北方地区，干燥少雨，很容易引发火灾，特别是那些存在危险爆炸品的工作环境很容易'
-        },
-        {
-          title: '正压式消防空气呼吸器行业标准知识介绍（一）',
-          url: 'http://www.czhaigu.com/comnews/2549.html',
-          date: '2018-08-02',
-          content: '时间已经进入了8月，我们大部分地区也迎来了温度最高的时候，特别是北方地区，干燥少雨，很容易引发火灾，特别是那些存在危险爆炸品的工作环境很容易'
-        }
-      ]
+      currentTabList: newsList,
+      currentTab: 1,
+      // hangyeList: hangyeList,
+      // protectList: protectList
     }
   },
   props: {
@@ -96,13 +69,33 @@ export default {
 
   },
   methods: {
-
+    selectTab (val) {
+      console.log('xxx', val, Math.random());
+      switch (val.name) {
+        case '行业动态':
+          this.currentTabList = hangyeList;
+          this.currentTab = 0;
+          break;
+        case '海固新闻':
+          this.currentTabList = newsList;
+          this.currentTab = 1;
+          break;
+        case '防护知识':
+          this.currentTabList = protectList;
+          this.currentTab = 2;
+          break;
+        default:
+          this.currentTabList = newsList;
+          break;
+      }
+    }
   }
 }
 </script>
 <style scoped>
 .company_news {
   width: 100%;
+  margin-bottom: 20px;
 }
 .company_news .company_news_content {
   width: 1200px;
@@ -122,6 +115,18 @@ export default {
   line-height: 116px;
   text-align: center;
 }
+/* 当前选中的tab */
+.company_news .company_news_left_tab .company_news_tab_item.active_tab {
+  background-color: #1474ae;
+}
+.company_news .company_news_left_tab .company_news_tab_item.active_tab a {
+  color: #ffffff;
+}
+.company_news .company_news_left_tab .company_news_tab_item a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+}
 /* 中间资讯列表样式 */
 .company_news .company_news_left_list {
   width: 420px;
@@ -131,6 +136,7 @@ export default {
   overflow: hidden;
   margin-bottom: 20px;
 }
+/* 新闻前的编号 */
 .company_news .company_news_left_list .news_item_sort {
   float: left;
   width: 40px;
@@ -147,9 +153,11 @@ export default {
   float: left;
   width: 360px;
 }
+/* 新闻第一行 */
 .company_news .company_news_left_list .news_item_content_info {
   overflow: hidden;
 }
+/* 新闻第一行标题 */
 .company_news .company_news_left_list .news_item_content_info>a {
   display: block;
   width: 180px;
@@ -162,6 +170,10 @@ export default {
   height: 30px;
   line-height: 30px;
 }
+.company_news .company_news_left_list .news_item_content_info>a:hover {
+  text-decoration: underline;
+}
+/* 新闻第一行日期 */
 .company_news .company_news_left_list .news_item_content_info>span {
   display: block;
   width: 73px;
@@ -173,6 +185,7 @@ export default {
   height: 30px;
   line-height: 30px;
 }
+/* 新闻第二行内容 */
 .company_news .company_news_left_list .news_item_content>p {
   font-size: 12px;
   height: 24px;
@@ -184,6 +197,8 @@ export default {
 }
 /* 右侧视频样式 */
 .company_news .company_news_right {
-
+  float: right;
+  width: 550px;
+  height: 350px;
 }
 </style>
