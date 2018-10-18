@@ -1,6 +1,6 @@
 <template>
   <div class="related_issues">
-    相关问题
+    <img v-for="(img, index) in relatedIssuesImgList" :key="index" :src="img" alt="">
   </div>
 </template>
 <script>
@@ -12,7 +12,10 @@ export default {
     }
   },
   props: {
-
+    relatedIssuesImgList: {
+      type: Array,
+      default: () => []
+    }
   },
   computed: {
 
@@ -28,5 +31,8 @@ export default {
 <style scoped>
 .related_issues {
 
+}
+.related_issues img {
+  width: 100%;
 }
 </style>

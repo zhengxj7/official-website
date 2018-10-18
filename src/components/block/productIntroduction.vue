@@ -1,6 +1,6 @@
 <template>
   <div class="product_intro">
-    产品介绍
+    <img v-for="(img, index) in productIntroImgList" :key="index" :src="img" alt="">
   </div>
 </template>
 <script>
@@ -12,7 +12,12 @@ export default {
     }
   },
   props: {
-
+    productIntroImgList: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    }
   },
   computed: {
 
@@ -28,5 +33,8 @@ export default {
 <style scoped>
 .product_intro {
 
+}
+.product_intro img {
+  width: 100%;
 }
 </style>

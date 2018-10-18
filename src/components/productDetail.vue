@@ -25,18 +25,14 @@
       <website-tab :tab-list="tabList" @activeTab="activeTab"></website-tab>
     </div>
     <div class="tab_content">
-      <product-introduction v-if="currentIndex==0"></product-introduction>
-      <use-introduction v-if="currentIndex==1"></use-introduction>
-      <related-issues v-if="currentIndex==2"></related-issues>
+      <product-introduction v-if="currentIndex==0" :productIntroImgList="productIntroImgList"></product-introduction>
+      <use-introduction v-if="currentIndex==1" :useIntroImgList="useIntroImgList"></use-introduction>
+      <related-issues v-if="currentIndex==2" :relatedIssuesImgList="relatedIssuesImgList"></related-issues>
       <resourse-download v-if="currentIndex==3"></resourse-download>
     </div>
   </div>
 </template>
 <script>
-import baseInfoImg1 from '@/assets/img/company_boost_1.jpg';
-import baseInfoImg2 from '@/assets/img/company_boost_2.jpg';
-import baseInfoImg3 from '@/assets/img/company_boost_3.jpg';
-import baseInfoImg4 from '@/assets/img/company_boost_4.jpg';
 import wangwang from '@/assets/img/wangwang.gif';
 import qq from '@/assets/img/qq.gif';
 import WebsiteTab from '@/components/block/tab';
@@ -48,8 +44,13 @@ export default {
   name: 'product-detail',
   data () {
     return {
-      baseInfoImgList: [baseInfoImg1, baseInfoImg2, baseInfoImg3, baseInfoImg4],
-      currentImg: baseInfoImg1,
+      baseInfoImgList: [
+        'http://www.czhaigu.com/uploads/product/fdmj/zichan/mianzhao/1.jpg',
+        'http://www.czhaigu.com/uploads/product/fdmj/zichan/bz-bmz.jpg',
+        'http://www.czhaigu.com/uploads/product/fdmj/zichan/600+ldh/600+K4.jpg',
+        'http://www.czhaigu.com/uploads/product/fdmj/zichan/600+ldh/600+D1.jpg'
+      ],
+      currentImg: 'http://www.czhaigu.com/uploads/product/fdmj/zichan/mianzhao/1.jpg',
       productDetail: [
         {name: '防护等级', value: 'KN100，过滤效率 >= 99.97%'},
         {name: '防护等级', value: 'KN95，过滤效率 >= 95.0%'},
@@ -59,8 +60,36 @@ export default {
       ],
       wangwang: wangwang,
       qq: qq,
-      tabList: ['产品1介绍', '使用2说明', '常见3问题', '相关4下载'],
+      tabList: ['产品介绍', '使用说明', '常见问题', '相关下载'],
       currentIndex: 0,
+      productIntroImgList: [
+        'http://www.czhaigu.com/images/hxfhzn.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/1.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/2.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/4.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/5.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/6.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/7.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/8.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/10.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/11.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/12.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/13.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/14.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/15.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/16.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/17.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/600xl-zichan/600/18.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/ty/gc-1.jpg',
+        'http://www.czhaigu.com/uploads/product/tb3/ty/sh.jpg',
+        'http://www.czhaigu.com/uploads/zizhi/shanghaizhanhui.jpg'
+      ],
+      useIntroImgList: [
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/shiyong/600.jpg'
+      ],
+      relatedIssuesImgList: [
+        'http://www.czhaigu.com/uploads/product/tb3/fdmj/cj/600fdmj.jpg'
+      ],
 
     }
   },
@@ -92,6 +121,9 @@ export default {
 </script>
 <style scoped>
 /* 顶部基础信息样式 */
+.product_detail {
+  margin-top: 50px;
+}
 .product_detail .base_info {
   overflow: hidden;
   width: 100%;

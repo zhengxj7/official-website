@@ -57,7 +57,7 @@ export default {
 }
 .website_index .website_index_product {
   width: 1200px;
-  margin: 20px auto;
+  margin: 20px auto 40px;
   overflow: hidden;
 }
 .website_index .website_index_category_list {
