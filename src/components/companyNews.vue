@@ -1,6 +1,6 @@
 <template>
   <div class="company_news">
-    <section-title title="新闻资讯"></section-title>
+    <section-title title="新闻资讯" :sectionTitleImg="newsTitleImg"></section-title>
     <div class="company_news_content">
       <div class="company_news_left">
         <div class="company_news_left_tab">
@@ -30,6 +30,8 @@
 <script>
 import SectionTitle from '@/components/block/sectionTitle';
 import {newsList, hangyeList, protectList} from '@/mock/newsList.js';
+import newsTitleImg from '@/assets/img/website_index_news.jpg';
+
 export default {
   name: 'company_news',
   data () {
@@ -51,6 +53,7 @@ export default {
       ],
       currentTabList: newsList,
       currentTab: 1,
+      newsTitleImg: newsTitleImg
       // hangyeList: hangyeList,
       // protectList: protectList
     }

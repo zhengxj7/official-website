@@ -1,10 +1,10 @@
 <template>
   <div class="company_introduction">
-    <section-title title="关于海固"></section-title>
+    <section-title title="关于海固" :sectionTitleImg="sectionTitleImg"></section-title>
     <div class="company_introduction_content">
       <div class="company_introduction_left">
         <h1>认识海固</h1>
-        <p>海固安全防护科技有限公司坐落于享有"运河古郡，渤海明珠"美誉的历史文化名城--河北省沧州市。是一家拥有独创品牌与核心科技，自主研发生产结合先进OEM外协加工，专业打造安全防护产品的企业，严格的质量把控、专业的防护技术、完善的售后服务，使海固一跃成长为国内安防用品定点授权生产厂家及特种劳动防护用品科技研发中心。</p>
+        <p>海固安全防护科技有限公司坐落于享有"运河古郡，渤海明珠"美誉的历史文化名城--河北省沧州市。是一家拥有独创品牌与核心科技，自主研发生产结合先进OEM外协加工，专业打造安全防护产品的企业，严格的质量把控、专业的防护技术、完善的售后服务，使海固一跃成长为国内安防用品定点授权生产厂家及特种劳动防护用品科技研发中心。海固安全防护科技有限公司坐落于享有"运河古郡，渤海明珠"美誉的历史文化名城--河北省沧州市。是一家拥有独创品牌与核心科技，自主研发生产结合先进OEM外协加工，专业打造安全防护产品的企业，严格的质量把控、专业的防护技术、完善的售后服务，使海固一跃成长为国内安防用品定点授权生产厂家及特种劳动防护用品科技研发中心。</p>
         <div class="img_list">
           <img v-for="(img, index) in imgList" :key="index" :src="img.url" :alt="img.des" :class="{margin_left: index!=0}">
         </div>
@@ -12,7 +12,11 @@
       <div class="company_introduction_right">
         <h1>海固资质</h1>
         <div class="company_introduction_right_lunbo">
-          <!-- <img :src="imgList[0].url" alt=""> -->
+          <el-carousel height="246px" indicator-position="none" class="lunbo_box">
+            <el-carousel-item v-for="(item, ind) in carouselList" :key="ind" class="company_introduction_lunbo_item">
+              <img :src="item" alt="">
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </div>
     </div>
@@ -21,6 +25,7 @@
 <script>
 import SectionTitle from '@/components/block/sectionTitle';
 import introductionImg from '@/assets/img/company_introduction.jpg';
+import sectionTitleImg from '@/assets/img/website_index_aboutus.jpg';
 
 export default {
   name: 'company-introduction',
@@ -31,7 +36,13 @@ export default {
         {des: '厂房2', url: introductionImg},
         {des: '厂房3', url: introductionImg},
         {des: '厂房4', url: introductionImg}
-      ]
+      ],
+      carouselList: [
+        'http://www.czhaigu.com/templets/xinhaigu/images/yingye.jpg',
+        'http://www.czhaigu.com/templets/xinhaigu/images/scxkz.jpg',
+        'http://www.czhaigu.com/templets/xinhaigu/images/shangbiao.jpg'
+      ],
+      sectionTitleImg: sectionTitleImg
     }
   },
   props: {
@@ -74,9 +85,14 @@ export default {
   float: left;
 }
 .company_introduction .company_introduction_left p {
+  width: 100%;
   line-height: 26px;
-  padding: 20px 0;
+  margin: 20px 0;
   text-indent: 28px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .company_introduction .company_introduction_left .img_list {
   width: 100%;
@@ -96,8 +112,21 @@ export default {
 }
 .company_introduction .company_introduction_right .company_introduction_right_lunbo {
   width: 380px;
-  height: 260px;
+  height: 246px;
   margin-top: 20px;
-  border: 1px solid greenyellow;
+}
+.company_introduction .company_introduction_right .company_introduction_right_lunbo .lunbo_box {
+  width: 175px;
+  margin: 0 auto;
+}
+.company_introduction .company_introduction_right .company_introduction_lunbo_item {
+  width: 175px;
+  height: 100%;
+}
+.company_introduction .company_introduction_right .company_introduction_lunbo_item img {
+  width: 100%;
+  height: 100%;
 }
 </style>
+
+
