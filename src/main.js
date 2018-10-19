@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Carousel from 'element-ui'
 
+Vue.use(Carousel);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
