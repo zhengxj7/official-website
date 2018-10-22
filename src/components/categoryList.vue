@@ -11,7 +11,9 @@
 import categoryListItem from '@/components/block/categoryListItem';
 import { categoryList } from '@/mock/categoryList.js';
 import categoryListImg from '@/assets/img/website_index_cpzx.jpg';
-
+import axios from 'axios';
+import Vue from 'vue';
+Vue.use(axios);
 export default {
   name: 'category-list',
   data () {
@@ -32,10 +34,16 @@ export default {
 
   },
   mounted () {
-
+    this.getCategoryList();
   },
   methods: {
-
+    getCategoryList () {
+      axios.get(this.$api + 'product/list').then(res => {
+        console.log('xxxxx', res);
+      }).catch(err => {
+        console.log(err);
+      })
+    }
   }
 }
 </script>
