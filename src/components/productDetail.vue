@@ -15,10 +15,11 @@
           <span class="title">{{per.name}}</span>
           <span class="content">{{per.value}}</span>
         </div>
-        <div class="base_info_link">
+        <!-- 该部分html及css暂时隐藏 -->
+        <!-- <div class="base_info_link">
           <div><img :src="wangwang" alt="">联系购买</div>
           <div><img :src="qq" alt="">在线咨询</div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="tab_components">
@@ -40,6 +41,7 @@ import ProductIntroduction from '@/components/block/productIntroduction';
 import UseIntroduction from '@/components/block/useIntroduction';
 import RelatedIssues from '@/components/block/relatedIssues';
 import ResourseDownload from '@/components/block/resourseDownload';
+
 export default {
   name: 'product-detail',
   data () {
@@ -107,7 +109,9 @@ export default {
     ResourseDownload
   },
   mounted () {
-
+    this.$event.$on('productDetail', function (data) {
+      console.log('yyyyy===我收到啦');
+    })
   },
   methods: {
     showNowImg (img) {
@@ -189,7 +193,7 @@ export default {
   width: 440px;
 }
 /* 基础信息右侧按钮样式*/
-.product_detail .base_info .base_info_detail .base_info_link {
+/* .product_detail .base_info .base_info_detail .base_info_link {
   margin-top: 60px;
   overflow: hidden;
 }
@@ -209,5 +213,5 @@ export default {
   position: relative;
   top: 3px;
   right: 5px;
-}
+} */
 </style>

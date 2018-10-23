@@ -4,15 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Carousel from 'element-ui'
-import axios from 'axios';
-
-Vue.use(axios);
+import { get } from './utils/http'
 
 Vue.use(Carousel);
 Vue.config.productionTip = false
-Vue.prototype.$api = 'http://wms.zbering.com/';
+Vue.prototype.$get = get;
 
-/* eslint-disable no-new */
+// 注册中央事件总线
+Vue.prototype.$event = new Vue();
+
 new Vue({
   el: '#app',
   router,

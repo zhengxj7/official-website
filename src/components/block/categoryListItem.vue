@@ -1,7 +1,7 @@
 <template>
   <div class="category_list_item">
     <div class="category_list_item_title">{{subList.name}}</div>
-    <div v-for="(item, index) in subList.menus" :key="index" :class="{category_list_item_con: true}">{{item.name}}</div>
+    <div v-for="(item, index) in subList.productList" :key="index" :class="{category_list_item_con: true}" @click="getProductDetail(item.id)">{{item.title}}</div>
   </div>
 </template>
 <script>
@@ -29,7 +29,14 @@ export default {
 
   },
   methods: {
-
+    getProductDetail (_id) {
+      this.$get('bgr/product/detail/' + _id).then(res => {
+        // console.log('yyyyyyy', res);
+        this.$event.$emit('productDetail', res.obj);
+      }).catch(err => {
+        console.log(err);
+      })
+    }
   }
 }
 </script>
