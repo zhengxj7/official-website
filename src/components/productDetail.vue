@@ -46,7 +46,6 @@ import UseIntroduction from '@/components/block/useIntroduction';
 import RelatedIssues from '@/components/block/relatedIssues';
 import ResourseDownload from '@/components/block/resourseDownload';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
-import 'swiper/dist/css/swiper.min.css';
 
 export default {
   name: 'product-detail',
