@@ -30,12 +30,7 @@ export default {
   },
   methods: {
     getProductDetail (_id) {
-      this.$get('bgr/product/detail/' + _id).then(res => {
-        // console.log('yyyyyyy', res);
-        this.$event.$emit('productDetail', res.obj);
-      }).catch(err => {
-        console.log(err);
-      })
+      this.$event.$emit('getProductDetail', _id);
     }
   }
 }
