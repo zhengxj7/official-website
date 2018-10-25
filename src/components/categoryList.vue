@@ -35,8 +35,15 @@ export default {
   methods: {
     getCategoryList () {
       this.$get('product/list').then(res => {
-        console.log('xxxx', res.obj);
-        this.categoryList = res.obj;
+        this.categoryList = res.obj || [];
+        let activeProductId;
+        for (let i = 0, len = this.categoryList.length; i < len; i++) {
+          if (this.categoryList[i].productList && this.categoryList[i].productList.length>0) {
+            activeProductId = this.categoryList[i].productList[0].id;
+            break
+          }
+        }
+        this.$event.$emit('categoryList', activeProductId);
       }).catch(err => {
         console.log(err);
       })

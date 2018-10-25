@@ -21,6 +21,12 @@
             <div class="website_link_code_name">{{item.name}}</div>
           </div>
         </div>
+        <div class="website_link_friend">
+          <div class="website_link_friend_title">友情链接：</div>
+          <div class="website_link_friend_a">
+            <a v-for="(friend, num) in friendLinkList" :key="num" :href="friend.url" target="_blank">{{friend.name}}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +66,22 @@ export default {
                 {name: '扫描关注微信', url: linkCodeImg},
                 {name: '扫描关注微博', url: linkCodeImg},
             ],
+            friendLinkList: [
+              { name: '百度中文网', url: 'https://www.baidu.com' },
+              { name: '京东商城', url: 'https://www.jd.com/' },
+              { name: '博客园', url: 'https://www.cnblogs.com/' },
+              { name: '淘宝网', url: 'https://www.taobao.com' },
+              { name: '博客园', url: 'https://www.cnblogs.com/' },
+              { name: '网易新闻', url: 'https://www.163.com/' },
+              { name: '百度中文网', url: 'https://www.baidu.com' },
+              { name: '新浪新闻', url: 'https://www.sina.com.cn/' },
+              { name: '凤凰网', url: 'https://www.ifeng.com/' },
+              { name: '百度中文网', url: 'https://www.baidu.com' },
+              { name: '新浪新闻', url: 'https://www.sina.com.cn/' },
+              { name: '慕课网', url: 'https://www.imooc.com/' },
+              { name: '博客园', url: 'https://www.cnblogs.com/' },
+              { name: '新浪新闻', url: 'https://www.sina.com.cn/' },
+            ],
             linkLogoImg: linkLogoImg,
 
         }
@@ -96,8 +118,8 @@ export default {
 }
 /* 左侧公司Logo部分样式 */
 .website_link .website_link_logo {
-    width: 120px;
-    height: 140px;
+    width: 240px;
+    height: 280px;
 }
 .website_link .website_link_logo img {
     width: 100%;
@@ -105,13 +127,13 @@ export default {
 }
 /* ---- */
 .website_link .website_link_link {
-    width: 1080px;
+    width: 960px;
     padding-top: 10px;
 }
 /* 中间Link部分样式 */
 .website_link .website_link_url {
-    width: 840px;
-    padding-left: 150px;
+    width: 720px;
+    padding-left: 50px;
     float: left;
 }
 .website_link .website_link_url .website_link_url_item {
@@ -158,5 +180,39 @@ export default {
     color: #cccccc;
     height: 30px;
     line-height: 30px;
+}
+.website_link .website_link_friend {
+    float: left;
+    width: 100%;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #464646;
+}
+.website_link .website_link_friend .website_link_friend_title {
+    color: #ffffff;
+    float: left;
+    width: 70px;
+    height: 20px;
+    line-height: 20px;
+}
+.website_link .website_link_friend .website_link_friend_a {
+    float: left;
+    width: 840px;
+    max-height: 120px;
+    overflow: hidden;
+}
+.website_link .website_link_friend .website_link_friend_a a {
+    color: #cccccc;
+    text-decoration: none;
+    padding: 0 5px;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+.website_link .website_link_friend .website_link_friend_a a:hover {
+    text-decoration: underline;
 }
 </style>

@@ -2,16 +2,12 @@
   <div class="product_detail">
     <div class="base_info">
       <div class="base_info_img">
-        <swiper :options="swiperOptionTop" ref="swiperTop" class="gallery_top">
-          <swiper-slide v-for="(img, index) in productInfo.smallPUrl" :key="index">
-            <img :src="img" alt="">
-          </swiper-slide>
-        </swiper>
-        <swiper :options="swiperOptionThumbs" ref="swiperOptionThumbs" class="gallery_thumbs">
-          <swiper-slide v-for="(img, index) in productInfo.smallPUrl" :key="index">
-            <img :src="img" alt="">
-          </swiper-slide>
-        </swiper>
+        <div class="base_info_img_big">
+          <img :src="productInfo.imgUrl" alt="">
+        </div>
+        <div class="base_info_img_small">
+          <img v-for="(img, index) in productInfo.smallPUrl" :key="index" :src="img" alt="" :class="{margin_right: index!=3}" @mouseover="showNowImg(img)">
+        </div>
       </div>
       <div class="base_info_detail">
         <p>{{productInfo.title || '暂无'}}</p>
@@ -45,30 +41,14 @@ import ProductIntroduction from '@/components/block/productIntroduction';
 import UseIntroduction from '@/components/block/useIntroduction';
 import RelatedIssues from '@/components/block/relatedIssues';
 import ResourseDownload from '@/components/block/resourseDownload';
-import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 export default {
   name: 'product-detail',
   data () {
     return {
-      swiperOptionTop: {
-        spaceBetween: 10,
-        loop: true,
-        loopedSlides: 5, //looped slides should be the same
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      },
-      swiperOptionThumbs: {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        touchRatio: 0.2,
-        loop: true,
-        loopedSlides: 5, //looped slides should be the same
-        slideToClickedSlide: true,
-      },
       productInfo: {  // 页面顶部产品信息
+        imgUrl: '',
+        smallPUrl: [],
         productDetail: [  // 产品属性
           {name: '防护等级', value: 'KN100，过滤效率 >= 99.97%'},
           {name: '防护等级', value: 'KN95，过滤效率 >= 95.0%'},
@@ -101,26 +81,21 @@ export default {
     ProductIntroduction,
     UseIntroduction,
     RelatedIssues,
-    ResourseDownload,
-    swiperSlide,
-    swiper
+    ResourseDownload
   },
   mounted () {
     window.kk = this;
     this.$event.$on('getProductDetail', data => {
       this.getDetailAction(data);
     })
-    this.$nextTick(() => {
-      const swiperTop = this.$refs.swiperTop.swiper
-      const swiperThumbs = this.$refs.swiperThumbs.swiper
-      swiperTop.controller.control = swiperThumbs
-      swiperThumbs.controller.control = swiperTop
+    this.$event.$on('categoryList', (data) => {
+      this.getDetailAction(data);
     })
   },
   methods: {
     showNowImg (img) {
       console.log('ggggg', img);
-      this.currentImg = img;
+      this.productInfo.imgUrl = img;
     },
     activeTab (ind) {
       this.currentIndex = ind;
@@ -128,9 +103,7 @@ export default {
     getDetailAction (_id) {
       console.log('getDetailAction run');
       this.$get('bgr/product/detail/' + _id).then(res => {
-        console.log('yyyy', res.obj);
         this.productInfo = Object.assign({}, this.productInfo, res.obj);
-
       }).catch(err => {
         console.log(err);
       })
@@ -153,6 +126,32 @@ export default {
   float: left;
   width: 385px;
   margin-right: 25px;
+}
+/* 基础信息左侧上方大图样式*/
+.product_detail .base_info .base_info_img .base_info_img_big {
+  width: 100%;
+  height: 385px;
+  border: 1px solid #c8c8c8;
+  margin-bottom: 10px;
+}
+.product_detail .base_info .base_info_img .base_info_img_big img {
+  width: 100%;
+  height: 100%;
+}
+/* 基础信息左侧下方小图样式*/
+.product_detail .base_info .base_info_img .base_info_img_small {
+  width: 100%;
+  overflow: hidden;
+}
+.product_detail .base_info .base_info_img .base_info_img_small img {
+  display: block;
+  float: left;
+  width: 85px;
+  height: 85px;
+  border: 1px solid #c8c8c8;
+}
+.product_detail .base_info .base_info_img .base_info_img_small img.margin_right {
+  margin-right: 15px;
 }
 /* 基础信息右侧属性样式*/
 .product_detail .base_info .base_info_detail {
