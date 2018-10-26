@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Carousel from 'element-ui'
+import Tabs from 'element-ui'
 import { get } from './utils/http'
 
 Vue.use(VueAwesomeSwiper);

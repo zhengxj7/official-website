@@ -23,13 +23,12 @@
       </div>
     </div>
     <div class="tab_components">
-      <website-tab :tab-list="tabList" @activeTab="activeTab"></website-tab>
-    </div>
-    <div class="tab_content">
-      <product-introduction v-if="currentIndex==0" :productIntroImgList="productInfo.bigPUrl"></product-introduction>
-      <use-introduction v-if="currentIndex==1" :useIntroImgList="useIntroImgList"></use-introduction>
-      <related-issues v-if="currentIndex==2" :relatedIssuesImgList="relatedIssuesImgList"></related-issues>
-      <resourse-download v-if="currentIndex==3"></resourse-download>
+      <!-- <website-tab :tab-list="tabList" @activeTab="activeTab"></website-tab> -->
+      <el-tabs type="border-card">
+        <el-tab-pane label="产品介绍">
+          <product-introduction :productIntroImgList="productInfo.bigPUrl"></product-introduction>
+        </el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
