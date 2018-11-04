@@ -29,7 +29,6 @@
 </template>
 <script>
 import SectionTitle from '@/components/block/sectionTitle';
-import {newsList, hangyeList, protectList} from '@/mock/newsList.js';
 import newsTitleImg from '@/assets/img/website_index_news.jpg';
 
 export default {
@@ -51,11 +50,12 @@ export default {
           url: 'https://www.baidu.com'
         }
       ],
-      currentTabList: newsList,
+      newsList: [], // 海固新闻列表
+      hangyeList: [], // 行业动态列表
+      protectList: [], // 防护知识列表
+      currentTabList: [],
       currentTab: 1,
       newsTitleImg: newsTitleImg
-      // hangyeList: hangyeList,
-      // protectList: protectList
     }
   },
   props: {
@@ -69,26 +69,40 @@ export default {
 
   },
   mounted () {
-
+    this.getNewsList();
   },
   methods: {
+    getNewsList () {
+      this.$get('news/list?topic=hydt', {}).then(res => {
+        if (res.success) {
+          this.newsList = res.obj;
+          this.currentTabList = res.obj;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     selectTab (val) {
-      console.log('xxx', val, Math.random());
+      console.log(val.name);
       switch (val.name) {
         case '行业动态':
-          this.currentTabList = hangyeList;
+          // 如果hangyeList为[]则调用接口
+          this.currentTabList = this.hangyeList;
           this.currentTab = 0;
           break;
         case '海固新闻':
-          this.currentTabList = newsList;
+          // 如果newsList为[]则调用接口
+          this.currentTabList = this.newsList;
           this.currentTab = 1;
           break;
         case '防护知识':
-          this.currentTabList = protectList;
+          // 如果protectList为[]则调用接口
+          this.currentTabList = this.protectList;
           this.currentTab = 2;
           break;
         default:
-          this.currentTabList = newsList;
+          // 如果newsList为[]则调用接口
+          this.currentTabList = this.newsList;
           break;
       }
     }
@@ -151,6 +165,7 @@ export default {
   font-weight: bold;
   background-color: #efefef;
   margin-right: 20px;
+  margin-top: 7px;
 }
 .company_news .company_news_left_list .news_item_content {
   float: left;
