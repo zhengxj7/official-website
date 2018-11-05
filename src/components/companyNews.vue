@@ -153,6 +153,9 @@ export default {
   overflow: hidden;
   margin-bottom: 20px;
 }
+.company_news .company_news_left_list .company_news_list_item:last-child {
+  margin-bottom: 0;
+}
 /* 新闻前的编号 */
 .company_news .company_news_left_list .news_item_sort {
   float: left;
