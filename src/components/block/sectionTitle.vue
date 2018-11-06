@@ -14,7 +14,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '关于海固'
+      default: '关于凯瑞达'
     },
     sectionTitleImg: {
       type: String,

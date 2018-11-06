@@ -1,20 +1,20 @@
 <template>
   <div class="company_introduction">
-    <section-title title="关于海固" :sectionTitleImg="sectionTitleImg"></section-title>
+    <section-title title="关于凯瑞达" :sectionTitleImg="sectionTitleImg"></section-title>
     <div class="company_introduction_content">
       <div class="company_introduction_left">
-        <h1>认识海固</h1>
-        <p>海固安全防护科技有限公司坐落于享有"运河古郡，渤海明珠"美誉的历史文化名城--河北省沧州市。是一家拥有独创品牌与核心科技，自主研发生产结合先进OEM外协加工，专业打造安全防护产品的企业，严格的质量把控、专业的防护技术、完善的售后服务，使海固一跃成长为国内安防用品定点授权生产厂家及特种劳动防护用品科技研发中心。海固安全防护科技有限公司坐落于享有"运河古郡，渤海明珠"美誉的历史文化名城--河北省沧州市。是一家拥有独创品牌与核心科技，自主研发生产结合先进OEM外协加工，专业打造安全防护产品的企业，严格的质量把控、专业的防护技术、完善的售后服务，使海固一跃成长为国内安防用品定点授权生产厂家及特种劳动防护用品科技研发中心。</p>
+        <h1>认识凯瑞达</h1>
+        <p>{{companyIntro.introduce}}</p>
         <div class="img_list">
-          <img v-for="(img, index) in imgList" :key="index" :src="img.url" :alt="img.des" :class="{margin_left: index!=0}">
+          <img v-for="(img, index) in companyIntro.pSelfs" :key="index" :src="img" alt="公司介绍" :class="{margin_left: index!=0}">
         </div>
       </div>
       <div class="company_introduction_right">
-        <h1>海固资质</h1>
+        <h1>凯瑞达资质</h1>
         <div class="company_introduction_right_lunbo">
           <el-carousel height="246px" indicator-position="none" class="lunbo_box">
-            <el-carousel-item v-for="(item, ind) in carouselList" :key="ind" class="company_introduction_lunbo_item">
-              <img :src="item" alt="">
+            <el-carousel-item v-for="(item, ind) in companyIntro.pRights" :key="ind" class="company_introduction_lunbo_item">
+              <img :src="item" alt="公司资质">
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -31,6 +31,7 @@ export default {
   name: 'company-introduction',
   data () {
     return {
+      companyIntro: {},
       imgList: [
         {des: '厂房1', url: introductionImg},
         {des: '厂房2', url: introductionImg},
@@ -56,10 +57,18 @@ export default {
 
   },
   mounted () {
-
+    this.getData();
   },
   methods: {
-
+    getData () {
+      this.$get('introduce/detail', {id: 1}).then(res => {
+        if (res.success) {
+          this.companyIntro = res.obj;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    }
   }
 }
 </script>

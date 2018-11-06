@@ -7,12 +7,14 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Carousel from 'element-ui'
 import Tabs from 'element-ui'
 import { get } from './utils/http'
+import * as filters from './filters'
 
 Vue.use(VueAwesomeSwiper);
 Vue.use(Carousel);
 Vue.config.productionTip = false
 Vue.prototype.$get = get;
 
+Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 
 // 注册中央事件总线
 Vue.prototype.$event = new Vue();

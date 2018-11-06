@@ -1,7 +1,7 @@
 <template>
     <div class="index_footer">
       <div class="index_footer_content">
-        <div class="index_footer_left">copyright &copy; 2011-2018 沧州海固 版权所有 冀ICP备12020195号 沧网备：13090002020021 冀公网安备 13090302000188号</div>
+        <div class="index_footer_left">copyright &copy; 2011-2018 沧州凯瑞达 版权所有 冀ICP备12020195号 沧网备：13090002020021 冀公网安备 13090302000188号</div>
         <div class="index_footer_right">
           <span><a href="">站长统计</a></span>
           <span class="border"><a href="">网站地图</a></span>

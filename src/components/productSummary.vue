@@ -26,7 +26,7 @@ export default {
             default: () => {
                 return {
                     url: 'xxx',
-                    name: '海固600半面罩防毒面具 喷漆 化工 消防防毒面具'
+                    name: '凯瑞达600半面罩防毒面具 喷漆 化工 消防防毒面具'
                 }
             }
         }

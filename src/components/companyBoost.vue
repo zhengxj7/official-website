@@ -8,7 +8,7 @@
       </div>
       <div class="company_boost_center">
         <div class="company_boost_center_con">
-          <span class="select_what">选择海固</span>
+          <span class="select_what">选择凯瑞达</span>
           <span class="select_num">4大理由</span>
           <span class="select_kouhao">品牌造就实力</span>
           <span class="select_kouhao">服务铸就口碑</span>

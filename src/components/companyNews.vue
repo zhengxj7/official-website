@@ -5,7 +5,8 @@
       <div class="company_news_left">
         <div class="company_news_left_tab">
           <div v-for="(tab, index) in tabList" :key="index" @mouseover="selectTab(tab)" :class="{company_news_tab_item: true, active_tab: index==currentTab}">
-            <a :href="tab.url">{{tab.name}}</a>
+            <!-- <a :href="tab.url || ''">{{tab.name}}</a> -->
+            <a href="#">{{tab.name}}</a>
           </div>
         </div>
         <div class="company_news_left_list">
@@ -13,8 +14,9 @@
             <div class="news_item_sort">{{['A', 'B', 'C', 'D', 'E'][index]}}</div>
             <div class="news_item_content">
               <div class="news_item_content_info">
-                <a :href="item.url">{{item.title}}</a>
-                <span>{{item.date}}</span>
+                <!-- <a :href="item.url || ''">{{item.title}}</a> -->
+                <a href="#">{{item.name}}</a>
+                <span>{{item.modifyTime | dateFormate}}</span>
               </div>
               <p>{{item.content}}</p>
             </div>
@@ -42,7 +44,7 @@ export default {
           url: 'https://www.baidu.com'
         },
         {
-          name: '海固新闻',
+          name: '凯瑞达新闻',
           url: 'https://www.baidu.com'
         },
         {
@@ -50,7 +52,7 @@ export default {
           url: 'https://www.baidu.com'
         }
       ],
-      newsList: [], // 海固新闻列表
+      newsList: [], // 凯瑞达新闻列表
       hangyeList: [], // 行业动态列表
       protectList: [], // 防护知识列表
       currentTabList: [],
@@ -68,41 +70,72 @@ export default {
     SectionTitle,
 
   },
-  mounted () {
-    this.getNewsList();
+  async mounted () {
+    this.currentTabList = await this.getNewsList();
   },
   methods: {
     getNewsList () {
-      this.$get('news/list?topic=hydt', {}).then(res => {
+      return this.$get('news/list?topic=krd', {}).then(res => {
         if (res.success) {
-          this.newsList = res.obj;
-          this.currentTabList = res.obj;
+          this.newsList = res.obj.datas;
+          return res.obj.datas;
         }
       }).catch(err => {
         console.log(err);
       })
     },
-    selectTab (val) {
-      console.log(val.name);
+    getHydtList () {
+      return this.$get('news/list?topic=hydt', {}).then(res => {
+        if (res.success) {
+          this.hangyeList = res.obj.datas;
+          return res.obj.datas;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    getProtectList () {
+      return this.$get('news/list?topic=fhzs', {}).then(res => {
+        if (res.success) {
+          this.protectList = res.obj.datas;
+          return res.obj.datas;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    async selectTab (val) {
       switch (val.name) {
         case '行业动态':
-          // 如果hangyeList为[]则调用接口
-          this.currentTabList = this.hangyeList;
+          if (this.hangyeList.length==0) {
+            this.currentTabList = await this.getHydtList();
+          } else {
+            this.currentTabList = this.hangyeList;
+          }
           this.currentTab = 0;
           break;
-        case '海固新闻':
-          // 如果newsList为[]则调用接口
-          this.currentTabList = this.newsList;
+        case '凯瑞达新闻':
+          if (this.newsList.length==0) {
+            this.currentTabList = await this.getNewsList();
+          } else {
+            this.currentTabList = this.newsList;
+          }
           this.currentTab = 1;
           break;
         case '防护知识':
-          // 如果protectList为[]则调用接口
-          this.currentTabList = this.protectList;
+          if (this.protectList.length==0) {
+            this.currentTabList = await this.getProtectList();
+          } else {
+            this.currentTabList = this.protectList;
+          }
           this.currentTab = 2;
           break;
         default:
-          // 如果newsList为[]则调用接口
-          this.currentTabList = this.newsList;
+          if (this.newsList.length=0) {
+            this.currentTabList = await this.getNewsList();
+          } else {
+            this.currentTabList = this.newsList;
+          }
           break;
       }
     }
@@ -197,10 +230,10 @@ export default {
 /* 新闻第一行日期 */
 .company_news .company_news_left_list .news_item_content_info>span {
   display: block;
-  width: 73px;
+  width: 105px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   float: right;
   font-size: 13px;
   height: 30px;

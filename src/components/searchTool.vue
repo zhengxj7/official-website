@@ -40,7 +40,7 @@ export default {
       SearchToolImg: SearchToolImg,
       Phone: Phone,
       keyWords: ['呼吸器', '防化服', '检测仪', '面罩', '滤毒盒'],
-      hotLine: '0512-88888888',
+      hotLine: '400-6499-119',
     }
   },
   props: {

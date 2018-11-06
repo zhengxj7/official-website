@@ -3,7 +3,7 @@
     <div class="category_list_img">
       <img :src="categoryListImg" alt="">
     </div>
-    <div class="category_list_title">海固劳保用品分类</div>
+    <div class="category_list_title">凯瑞达劳保用品分类</div>
     <category-list-item v-for="(item, index) in categoryList" :key="index" :sub-list="item"></category-list-item>
   </div>
 </template>
