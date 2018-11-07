@@ -11,8 +11,8 @@
       </div>
       <div class="base_info_detail">
         <p>{{productInfo.title || '暂无'}}</p>
-        <div v-for="(per, ind) in productInfo.productDetail" :key="ind" class="base_info_detail_item">
-          <span class="title">{{per.name}}</span>
+        <div v-for="(per, ind) in productInfo.remark" :key="ind" class="base_info_detail_item">
+          <span class="title">{{per.key}}</span>
           <span class="content">{{per.value}}</span>
         </div>
         <!-- 该部分html及css暂时隐藏 -->
@@ -73,7 +73,6 @@ export default {
 
   },
   computed: {
-
   },
   components: {
     WebsiteTab,
@@ -93,15 +92,19 @@ export default {
   },
   methods: {
     showNowImg (img) {
-      console.log('ggggg', img);
       this.productInfo.imgUrl = img;
     },
     activeTab (ind) {
       this.currentIndex = ind;
     },
     getDetailAction (_id) {
-      console.log('getDetailAction run');
       this.$get('bgr/product/detail/' + _id).then(res => {
+        let remarkArr = res.obj.remark.split('\n');
+        remarkArr.forEach((remark, index) => {
+          let arr = remark.split('：');
+          remarkArr[index] = {key: arr[0], value: arr[1]}
+        });
+        res.obj.remark = remarkArr;
         this.productInfo = Object.assign({}, this.productInfo, res.obj);
       }).catch(err => {
         console.log(err);
