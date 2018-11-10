@@ -1,6 +1,6 @@
 <template>
   <div class="product_detail">
-    <div class="base_info">
+    <div v-if="isSearch" class="base_info">
       <div class="base_info_img">
         <div class="base_info_img_big">
           <img :src="productInfo.imgUrl" alt="">
@@ -22,13 +22,16 @@
         </div> -->
       </div>
     </div>
-    <div class="tab_components">
+    <div v-if="isSearch" class="tab_components">
       <!-- <website-tab :tab-list="tabList" @activeTab="activeTab"></website-tab> -->
       <el-tabs type="border-card">
         <el-tab-pane label="产品介绍">
           <product-introduction :productIntroImgList="productInfo.bigPUrl"></product-introduction>
         </el-tab-pane>
       </el-tabs>
+    </div>
+    <div v-else>
+      抱歉！未搜索到您需要的产品...
     </div>
   </div>
 </template>
@@ -66,7 +69,7 @@ export default {
       useIntroImgList: [],
       // 常见问题tab
       relatedIssuesImgList: [],
-
+      isSearch: true
     }
   },
   props: {
@@ -89,6 +92,10 @@ export default {
     this.$event.$on('categoryList', (data) => {
       this.getDetailAction(data);
     })
+    this.$event.$on('searchEvent', data => {
+      console.log('收到，查找', data)
+      this.searchAction(data.keyWord)
+    })
   },
   methods: {
     showNowImg (img) {
@@ -108,6 +115,19 @@ export default {
         this.productInfo = Object.assign({}, this.productInfo, res.obj);
       }).catch(err => {
         console.log(err);
+      })
+    },
+    searchAction (val) {
+      this.$get('bgr/product/list', {title: val}).then(res => {
+        console.log('xxxxx',res)
+        if (res.obj && res.obj.datas && res.obj.datas.length>0) {
+          this.isSearch = true;
+          this.productInfo = Object.assign({}, res.obj.datas[0]);
+        } else {
+          this.isSearch = false;
+        }
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

@@ -6,11 +6,11 @@
       </div>
       <div class="middle left_border">
         <div class="middle_search_input">
-          <input v-model="searchParams.keyword" />
-          <select name="searchType" id="" v-model="searchParams.type">
+          <input v-model="searchParams.keyWord" placeholder="请输入产品名称" />
+          <!-- <select name="searchType" id="" v-model="searchParams.type">
             <option value="product">产品</option>
             <option value="news">资讯</option>
-          </select>
+          </select> -->
           <button @click="searchAction">搜  索</button>
         </div>
         <p class="middle_search_keywords">
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     searchAction () {
-      console.log('xxxx', this.searchParams);
+      this.$event.$emit('searchEvent', this.searchParams);
     }
   }
 }
@@ -105,7 +105,9 @@ export default {
   display: inline-block;
 }
 .middle_search_input input {
-  width: 240px;
+  /* width: 240px; */
+  /* 如果存在select则宽度为240px */
+  width: 300px;
   height: 32px;
   margin-top: -1px;
   margin-right: -4px;

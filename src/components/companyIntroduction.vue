@@ -1,6 +1,6 @@
 <template>
   <div class="company_introduction">
-    <section-title title="关于凯瑞达" :sectionTitleImg="sectionTitleImg"></section-title>
+    <section-title title="关于凯瑞达"></section-title>
     <div class="company_introduction_content">
       <div class="company_introduction_left">
         <h1>认识凯瑞达</h1>
@@ -25,25 +25,12 @@
 <script>
 import SectionTitle from '@/components/block/sectionTitle';
 import introductionImg from '@/assets/img/company_introduction.jpg';
-import sectionTitleImg from '@/assets/img/website_index_aboutus.jpg';
 
 export default {
   name: 'company-introduction',
   data () {
     return {
       companyIntro: {},
-      imgList: [
-        {des: '厂房1', url: introductionImg},
-        {des: '厂房2', url: introductionImg},
-        {des: '厂房3', url: introductionImg},
-        {des: '厂房4', url: introductionImg}
-      ],
-      carouselList: [
-        'http://www.czhaigu.com/templets/xinhaigu/images/yingye.jpg',
-        'http://www.czhaigu.com/templets/xinhaigu/images/scxkz.jpg',
-        'http://www.czhaigu.com/templets/xinhaigu/images/shangbiao.jpg'
-      ],
-      sectionTitleImg: sectionTitleImg
     }
   },
   props: {

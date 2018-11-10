@@ -21,19 +21,19 @@
             <div class="website_link_code_name">{{item.name}}</div>
           </div>
         </div>
-        <div class="website_link_friend">
+        <!-- <div class="website_link_friend">
           <div class="website_link_friend_title">友情链接：</div>
           <div class="website_link_friend_a">
             <a v-for="(friend, num) in friendLinkList" :key="num" :href="friend.url" target="_blank">{{friend.name}}</a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 <script>
 import linkLogoImg from '@/assets/img/website_link_logo.png';
-import linkCodeImg from '@/assets/img/website_link_code.jpg';
+import linkCodeImg from '@/assets/img/weixin_code.jpg';
 
 export default {
     name: 'website-link',
@@ -43,28 +43,28 @@ export default {
                 {
                     title: '资讯中心',
                     links: [
-                        {name: '行业动态', url: 'https://www.baidu.com'},
-                        {name: '防护知识', url: 'https://www.baidu.com'}
+                        {name: '行业动态', url: '#'},
+                        {name: '防护知识', url: '#'}
                     ]
                 },
                 {
                     title: '服务中心',
                     links: [
-                        {name: '合作加盟', url: 'https://www.baidu.com'},
-                        {name: '如何购买', url: 'https://www.baidu.com'}
+                        {name: '合作加盟', url: '#'},
+                        {name: '如何购买', url: '#'}
                     ]
                 },
                 {
                     title: '沟通中心',
                     links: [
-                        {name: '关于我们', url: 'https://www.baidu.com'},
-                        {name: '联系我们', url: 'https://www.baidu.com'}
+                        {name: '关于我们', url: '#'},
+                        {name: '联系我们', url: '#'}
                     ]
                 },
             ],
             codeList: [
                 {name: '扫描关注微信', url: linkCodeImg},
-                {name: '扫描关注微博', url: linkCodeImg},
+                // {name: '扫描关注微博', url: linkCodeImg},
             ],
             friendLinkList: [
               { name: '百度中文网', url: 'https://www.baidu.com' },
@@ -118,8 +118,10 @@ export default {
 }
 /* 左侧公司Logo部分样式 */
 .website_link .website_link_logo {
-    width: 240px;
-    height: 280px;
+    /* width: 240px; */
+    width: 120px;
+    /* height: 280px; */
+    height: 140px;
 }
 .website_link .website_link_logo img {
     width: 100%;
@@ -127,7 +129,9 @@ export default {
 }
 /* ---- */
 .website_link .website_link_link {
-    width: 960px;
+    /* width: 960px; */
+    /* 公司logo尺寸为240x280时宽度为960px */
+    width: 1080px;
     padding-top: 10px;
 }
 /* 中间Link部分样式 */
@@ -159,13 +163,17 @@ export default {
 
 /* 右侧二维码部分样式 */
 .website_link .website_link_code {
-    width: 240px;
+    /* width: 240px; */
+    /* 公司logo尺寸为240x280时宽度为240px */
+    width: 360px;
     float: right;
 }
 .website_link .website_link_code .website_link_code_item {
     width: 100px;
     margin-left: 20px;
-    float: left;
+    /* float: left; */ 
+    /* 两个二维码时左浮动 */
+    float: right;
 }
 .website_link .website_link_code .website_link_code_img {
     width: 100px;
