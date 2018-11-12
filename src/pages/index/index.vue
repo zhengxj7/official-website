@@ -34,11 +34,10 @@ export default {
   data () {
       return {
         carouselImgList: [
-          'http://www.czhaigu.com/templets/xinhaigu/images/1.jpg',
-          'http://www.czhaigu.com/templets/xinhaigu/images/2.jpg',
-          'http://www.czhaigu.com/templets/xinhaigu/images/3.jpg',
-          'http://www.czhaigu.com/templets/xinhaigu/images/4.jpg',
-          'http://www.czhaigu.com/templets/xinhaigu/images/5.jpg'
+          "http://www.zbering.com/data/formal/img/product/hb/1.jpg",
+          "http://www.zbering.com/data/formal/img/product/hb/2.jpg",
+          "http://www.zbering.com/data/formal/img/product/hb/3.jpg",
+          "http://www.zbering.com/data/formal/img/product/hb/4.jpg"
         ]
       }
   },

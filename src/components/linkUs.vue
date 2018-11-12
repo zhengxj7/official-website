@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import linkLogoImg from '@/assets/img/website_link_logo.png';
+import linkLogoImg from '@/assets/img/website_link_logo.jpg';
 import linkCodeImg from '@/assets/img/weixin_code.jpg';
 
 export default {
@@ -121,7 +121,8 @@ export default {
     /* width: 240px; */
     width: 120px;
     /* height: 280px; */
-    height: 140px;
+    height: 120px;
+    margin-top: 10px;
 }
 .website_link .website_link_logo img {
     width: 100%;
