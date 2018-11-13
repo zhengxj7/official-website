@@ -37,8 +37,9 @@ export default {
   name: 'company_news',
   data () {
     return {
-      videoUrl: 'http://cloud.video.taobao.com//play/u/2168657336/p/1/e/6/t/1/50053950152.mp4',
-      videoUrl: 'http://v.youku.com/v_show/id_XMzkxNDY2ODcyMA==.html?spm=a2hzp.8244740.0.0',
+      // videoUrl: 'http://cloud.video.taobao.com//play/u/2168657336/p/1/e/6/t/1/50053950152.mp4',
+      videoUrl: 'http://player.youku.com/player.php/sid/XMzkxNDY2ODcyMA==/v.swf',
+      // videoUrl: 'http://v.youku.com/v_show/id_XMzkxNDY2ODcyMA==.html?spm=a2hzp.8244740.0.0',
       tabList: [
         {
           name: '行业动态',
