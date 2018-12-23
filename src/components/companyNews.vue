@@ -5,8 +5,7 @@
       <div class="company_news_left">
         <div class="company_news_left_tab">
           <div v-for="(tab, index) in tabList" :key="index" @mouseover="selectTab(tab)" :class="{company_news_tab_item: true, active_tab: index==currentTab}">
-            <!-- <a :href="tab.url || ''">{{tab.name}}</a> -->
-            <a href="#">{{tab.name}}</a>
+            <span @click="geToNewsList(tab.btn)">{{tab.name}}</span>
           </div>
         </div>
         <div class="company_news_left_list">
@@ -15,7 +14,8 @@
             <div class="news_item_content">
               <div class="news_item_content_info">
                 <!-- <a :href="item.url || ''">{{item.title}}</a> -->
-                <a href="#">{{item.name}}</a>
+                <a href="javascript: void(0)" @click="goToNewsDetail(item.id)">{{item.name}}</a>
+                <!-- <span @click="goToNewsDetail(item.id)">{{item.name}}</span> -->
                 <span>{{item.modifyTime | dateFormate}}</span>
               </div>
               <p>{{item.content}}</p>
@@ -41,14 +41,17 @@ export default {
       tabList: [
         {
           name: '行业动态',
+          btn: 'hydt',
           url: 'https://www.baidu.com'
         },
         {
           name: '凯瑞达新闻',
+          btn: 'krd',
           url: 'https://www.baidu.com'
         },
         {
           name: '防护知识',
+          btn: 'fhzs',
           url: 'https://www.baidu.com'
         }
       ],
@@ -74,6 +77,15 @@ export default {
     this.currentTabList = await this.getNewsList();
   },
   methods: {
+    // 去往新闻列表
+    geToNewsList (tab) {
+      console.log('geToNewsList', tab)
+      this.$router.push({path: `/newslist/${tab}`})
+    },
+    // 去往新闻详情
+    goToNewsDetail (_id) {
+      console.log('goToNewsDetail', _id)
+    },
     getNewsList () {
       return this.$get('news/list?topic=krd', {}).then(res => {
         if (res.success) {
@@ -164,15 +176,16 @@ export default {
   height: 116px;
   line-height: 116px;
   text-align: center;
+  cursor: pointer;
 }
 /* 当前选中的tab */
 .company_news .company_news_left_tab .company_news_tab_item.active_tab {
   background-color: #1474ae;
 }
-.company_news .company_news_left_tab .company_news_tab_item.active_tab a {
+.company_news .company_news_left_tab .company_news_tab_item.active_tab span {
   color: #ffffff;
 }
-.company_news .company_news_left_tab .company_news_tab_item a {
+.company_news .company_news_left_tab .company_news_tab_item span {
   text-decoration: none;
   font-size: 18px;
   font-weight: 700;
