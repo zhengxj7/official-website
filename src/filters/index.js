@@ -14,3 +14,21 @@ export function dateFormate(d, pattern) {
   str = str.replace("ss", d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
   return str;
 }
+
+export function dateHandleYM (d) {
+  if (!d || d == "") return "";
+  if (typeof (d) != 'object') {
+      d = new Date(d);
+  }
+  let yy = d.getFullYear();
+  let mm = d.getMonth()+1 < 10 ?  '0' + (d.getMonth()+1) : d.getMonth()+1;
+  return `${yy}-${mm}`;
+}
+
+export function dateHandleD (d) {
+  if (!d || d == "") return "";
+  if (typeof (d) != 'object') {
+      d = new Date(d);
+  }
+  return d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+}

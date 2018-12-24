@@ -5,12 +5,16 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Carousel from 'element-ui'
+import Pagination from 'element-ui'
+import Breadcrumb from 'element-ui'
 import Tabs from 'element-ui'
 import { get } from './utils/http'
 import * as filters from './filters'
 
 Vue.use(VueAwesomeSwiper);
 Vue.use(Carousel);
+Vue.use(Pagination);
+Vue.use(Breadcrumb);
 Vue.config.productionTip = false
 Vue.prototype.$get = get;
 
