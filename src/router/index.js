@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // 网站首页
 import WebsiteIndex from '@/pages/index/index'
-// import productSummary from '@/components/productSummary'
 // 新闻列表
 import NewsList from '@/pages/news/index'
 // 新闻详情
@@ -18,15 +17,10 @@ export default new Router({
       name: 'WebsiteIndex',
       component: WebsiteIndex
     },
-    // {
-    //   path: '/img',
-    //   name: 'productSummary',
-    //   component: productSummary
-    // }
     {
       path: '/newslist/:name',
       name: 'NewsList',
-      component: NewsList
+      component: NewsList,
     },
     {
       path: '/newsdetail/:id',

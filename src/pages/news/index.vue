@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <div class="category">
-      <news-category @getNewsList="getNewsList"></news-category>
+      <news-category @getNewsList="getList"></news-category>
     </div>
     <div class="news-list">
       <div class="news-item" v-for="(news, index) in newsList" :key="index">
@@ -10,10 +10,17 @@
           <div class="bottom">{{ news.modifyTime | dateHandleD }}</div>
         </div>
         <div class="content">
-          <h3 class="title">{{ news.name }}</h3>
+          <h3 class="title" @click="goToDetail(news.id)">{{ news.name }}</h3>
           <div class="detail">{{ news.content }}</div>
         </div>
       </div>
+      <el-pagination 
+        background 
+        layout="total,prev,pager,next" 
+        :total="paginationObj.rowCount" 
+        :page-size="paginationObj.pageSize"
+        @current-change="handleCurrentChange"
+        style="text-align: right; margin-bottom: 50px;"></el-pagination>
     </div>
   </div>
 </template>
@@ -23,7 +30,13 @@ export default {
   name: 'news-list',
   data () {
     return {
-      newsList: []
+      nowTab: 'hydt',
+      newsList: [],
+      paginationObj: {},
+      searchParams: {
+        currentPage: 1,
+        pageSize: 10
+      }
     }
   },
   mounted () {
@@ -33,16 +46,27 @@ export default {
     NewsCategory
   },
   methods: {
-    getNewsList (data) {
-      console.log('getNewsList', data)
-      return this.$get(`news/list?topic=${data}`, {}).then(res => {
+    getList (data) {
+      this.nowTab = data;
+      this.getNewsList();
+    },
+    getNewsList () {
+      this.$get(`news/list?topic=${this.nowTab}`, this.searchParams).then(res => {
         if (res.success) {
           this.newsList = res.obj.datas;
-          return res.obj.datas;
+          this.paginationObj = Object.assign({}, res.obj.pagination);
         }
       }).catch(err => {
         console.log(err);
       })
+    },
+    handleCurrentChange (e) {
+      this.searchParams.currentPage = e;
+      this.getNewsList()
+    },
+    goToDetail (_id) {
+      console.log(_id)
+      this.$router.push({ path: `/newsdetail/${_id}` })
     }
   }
 }
@@ -70,10 +94,10 @@ export default {
   width: 124px;
   float: left;
 }
-.date:hover .top {
+.news-item:hover .top {
   background: #1474ae;
 }
-.date:hover .bottom {
+.news-item:hover .bottom {
   color: #1474ae;
 }
 .top {
@@ -104,6 +128,10 @@ export default {
   line-height: 26px;
   font-size: 20px;
   font-weight: 400;
+  cursor: pointer;
+}
+.title:hover {
+  color: #1474ae;
 }
 .detail {
   margin-top: 12px;
