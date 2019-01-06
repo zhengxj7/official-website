@@ -10,7 +10,7 @@
           <div class="bottom">{{ news.modifyTime | dateHandleD }}</div>
         </div>
         <div class="content">
-          <h3 class="title" @click="goToDetail(news.id)">{{ news.name }}</h3>
+          <h3 class="title" @click="goToDetail(news)">{{ news.name }}</h3>
           <div class="detail">{{ news.content }}</div>
         </div>
       </div>
@@ -64,9 +64,10 @@ export default {
       this.searchParams.currentPage = e;
       this.getNewsList()
     },
-    goToDetail (_id) {
-      console.log(_id)
-      this.$router.push({ path: `/newsdetail/${_id}` })
+    goToDetail (obj) {
+      console.log('goToDetail', obj.id)
+      this.$router.push({ path: `/newsdetail/${obj.id}` })
+      this.$event.$emit('newsDetail', obj)
     }
   }
 }
