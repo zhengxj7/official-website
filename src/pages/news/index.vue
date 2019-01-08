@@ -14,10 +14,10 @@
           <div class="detail">{{ news.content }}</div>
         </div>
       </div>
-      <el-pagination 
-        background 
-        layout="total,prev,pager,next" 
-        :total="paginationObj.rowCount" 
+      <el-pagination
+        background
+        layout="total,prev,pager,next"
+        :total="paginationObj.rowCount"
         :page-size="paginationObj.pageSize"
         @current-change="handleCurrentChange"
         style="text-align: right; margin-bottom: 50px;"></el-pagination>
@@ -65,9 +65,7 @@ export default {
       this.getNewsList()
     },
     goToDetail (obj) {
-      console.log('goToDetail', obj.id)
       this.$router.push({ path: `/newsdetail/${obj.id}` })
-      this.$event.$emit('newsDetail', obj)
     }
   }
 }

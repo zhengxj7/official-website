@@ -85,6 +85,7 @@ export default {
     // 去往新闻详情
     goToNewsDetail (_id) {
       console.log('goToNewsDetail', _id)
+      this.$router.push({ path: `newsdetail/${_id}` })
     },
     getNewsList () {
       return this.$get('news/list?topic=krd', {}).then(res => {

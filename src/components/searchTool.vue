@@ -1,7 +1,7 @@
 <template>
   <div class="search_tool">
     <div class="search_tool_content">
-      <div class="left">
+      <div class="left" @click="goHome">
         <img :src="SearchToolImg" alt="">
       </div>
       <div class="middle left_border">
@@ -55,6 +55,9 @@ export default {
   methods: {
     searchAction () {
       this.$event.$emit('searchEvent', this.searchParams);
+    },
+    goHome () {
+      this.$router.push({path: '/'})
     }
   }
 }
