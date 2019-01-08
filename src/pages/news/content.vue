@@ -50,6 +50,7 @@ export default {
     getNewsDetail (_id) {
       console.log('getNewsDetail', _id);
       // 等接口
+      console.log('xxxxxxxxxxx2019');
     }
   }
 }
